@@ -14,24 +14,24 @@ public class Test {
 		printFactors(a);
 	}
 
-	private static void printFactors(long a) {
-		Map<Long, Integer> factors = primeFactors(a);
+	private static void printFactors(long n) {
+		Map<Long, Integer> factors = primeFactors(n);
 		String factorString = "";
 		
-		for (long n:factors.keySet()) {
-			if (factors.get(n)==1){
-				factorString += n+"*";
+		for (long f:factors.keySet()) {
+			if (factors.get(f)==1){
+				factorString += f+"*";
 			} else {
-				factorString += n+"^"+factors.get(n)+"*";
+				factorString += f+"^"+factors.get(f)+"*";
 			}
 		}
 		
-		System.out.println("N = "+a+" = "+factorString.substring(0, factorString.length()-1));
+		System.out.println("N = "+n+" = "+factorString.substring(0, factorString.length()-1));
 	}
 
-	private static Map<Long,Integer> primeFactors(final long a) {
+	private static Map<Long,Integer> primeFactors(final long n) {
 		Map<Long, Integer> pf = new HashMap<Long,Integer>();
-		long nx = a;
+		long nx = n;
 		long px = 2;
 		
 		while (!isPrime(nx)) {
@@ -56,8 +56,8 @@ public class Test {
 		return pf;
 	}
 
-	private static long nextPrime(long px) {
-		long res = px+1;
+	private static long nextPrime(long n) {
+		long res = n+1;
 		while (!isPrime(res)) {
 			res += 1;
 		}
@@ -65,12 +65,12 @@ public class Test {
 	}
 
 	//checks whether an int is prime or not.
-	private static boolean isPrime(long nx) {
+	private static boolean isPrime(long n) {
 	    //check if n is a multiple of 2
-		if (nx%2==0) return false;
+		if (n%2==0) return false;
 	    //if not, then just check the odds
-	    for(int i=3;i*i<=nx;i+=2) {
-	        if(nx%i==0)
+	    for(int i=3;i*i<=n;i+=2) {
+	        if(n%i==0)
 	            return false;
 	    }
 	    return true;
