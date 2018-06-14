@@ -70,9 +70,11 @@ function symplifyRoot(n) {
 
 const MULT = '&times;'
 const RAC = '&radic;'
+const MAX = Number(document.getElementById('nb').getAttribute('max'))
+const MIN = Number(document.getElementById('nb').getAttribute('min'))
 
 function displayPrimeFactors() {
-	var nb = document.getElementById('nb').value
+	var nb = getNb()
 	var res = nb + ' = '
 	var factors = primeFactors(nb)
 	for (var factor in factors) {
@@ -88,13 +90,24 @@ function displayPrimeFactors() {
 }
 
 function displaySimplifiedRoot() {
-	var nb = document.getElementById('nb').value
+	var nb = getNb()
 	var nbs = symplifyRoot(nb)
 	if (nbs.br===1) {
 		nbs.br = ''
 	}
-	document.getElementById('res').innerHTML = nbs.br
+	document.getElementById('res').innerHTML = RAC + nb + ' = ' + nbs.br
 	if (nbs.ar!==1) {
 		document.getElementById('res').innerHTML += RAC + nbs.ar
 	}
+}
+
+function getNb() {
+	var nb = Number(document.getElementById('nb').value)
+	if (nb < MIN) {
+		nb = MIN
+	} else if (nb > MAX) {
+		nb = MAX
+	}
+	document.getElementById('nb').value = nb
+	return nb
 }
