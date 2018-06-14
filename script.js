@@ -50,7 +50,26 @@ function primeFactors(n) {
 	return res
 }
 
-const MULT = '&times'
+function symplifyRoot(n) {
+	var res = {br:1,ar:1}
+	var factors = primeFactors(n)
+	for (var factor in factors) {
+		if (factors.hasOwnProperty(factor)) {
+			if (Number.isInteger(factors[factor]/2)) {
+				res.br *= Math.pow(factor,factors[factor]/2)
+			} else {
+				res.br *= Math.pow(factor,(factors[factor]-1)/2)
+				res.ar *= factor
+			}
+		}
+	}
+	return res
+}
+
+/* ------------------------ VISUAL PART --------------------------- */
+
+const MULT = '&times;'
+const RAC = '&radic;'
 
 function displayPrimeFactors() {
 	var nb = document.getElementById('nb').value
@@ -66,4 +85,16 @@ function displayPrimeFactors() {
 		}
 	}
 	document.getElementById('res').innerHTML = res.slice(0,-1*MULT.length)
+}
+
+function displaySimplifiedRoot() {
+	var nb = document.getElementById('nb').value
+	var nbs = symplifyRoot(nb)
+	if (nbs.br===1) {
+		nbs.br = ''
+	}
+	document.getElementById('res').innerHTML = nbs.br
+	if (nbs.ar!==1) {
+		document.getElementById('res').innerHTML += RAC + nbs.ar
+	}
 }
