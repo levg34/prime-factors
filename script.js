@@ -52,9 +52,9 @@ function primeFactors(n) {
 
 const MULT = '&times'
 
-function test() {
+function displayPrimeFactors() {
 	var nb = document.getElementById('nb').value
-	var res = ''
+	var res = nb + ' = '
 	var factors = primeFactors(nb)
 	for (var factor in factors) {
 		if (factors.hasOwnProperty(factor)) {
