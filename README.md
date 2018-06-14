@@ -1,2 +1,2 @@
 # prime-factors
-Décomposition en facteurs premiers d'un nombre en Java
+Décomposition en facteurs premiers d'un nombre, racine simplifiable
